@@ -19,6 +19,10 @@ in
       shellIntegration.enableZshIntegration = true;
       theme = "Catppuccin-Mocha";
     };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
     zsh = {
       enable = true;
       autosuggestion.enable = true;
@@ -69,6 +73,7 @@ in
       package = pkgs.btop.override { cudaSupport = true; };
       settings = {
         theme_background = false;
+        shown_boxes = "proc cpu mem net gpu0";
       };
     };
   };
