@@ -50,8 +50,17 @@ in
       enable = true;
       settings = pkgs.lib.importTOML ./starship.toml;
     };
+    tmux = {
+      enable = true;
+      prefix = "C-Space";
+      clock24 = true;
+      keyMode = "vi";
+      mouse = true;
+      baseIndex = 1;
+    };
     fzf = {
       enable = true;
+      tmux.enableShellIntegration = true;
     };
     zoxide = {
       enable = true;
