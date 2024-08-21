@@ -1,17 +1,23 @@
 { ... }:
 
 {
-  programs.git = {
-    enable = true;
-    userName = "Pavel Holman";
-    delta.enable = true;
-    ignores = [
-      ".idea"
-      ".user"
-    ];
+  programs = {
+    git = {
+      enable = true;
+      userName = "Pavel Holman";
+      delta.enable = true;
+      ignores = [
+        ".idea"
+        ".user"
+      ];
+    };
+
+    gitui = {
+      enable = true;
+    };
   };
 
- home.file.".gitconfig".text = ''
+  home.file.".gitconfig".text = ''
     [includeIf "gitdir:~/Deels/"]
       path = ~/.gitconfig-deels
     [includeIf "gitdir:~/Merica/"]
