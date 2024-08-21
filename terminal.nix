@@ -43,6 +43,8 @@ in
         }
       ];
       shellAliases = {
+        cat = "bat";
+        grep = "rg";
         gll = "git log --graph --abbrev-commit --decorate --all --date=format:'%Y-%m-%d %H:%M:%S' --format=format:'%C(bold blue)%h%C(reset) on %C(bold cyan)%ad%C(reset) %C(bold green)(%ar)%C(reset) %C(dim white)by %an%C(reset) %C(auto)%d%C(reset) %n%C(white)%s%C(reset)%n'";
       };
     };
@@ -50,17 +52,15 @@ in
       enable = true;
       settings = pkgs.lib.importTOML ./starship.toml;
     };
-    tmux = {
+    zellij = {
       enable = true;
-      prefix = "C-Space";
-      clock24 = true;
-      keyMode = "vi";
-      mouse = true;
-      baseIndex = 1;
+    };
+    helix = {
+      enable = true;
+      defaultEditor = true;
     };
     fzf = {
       enable = true;
-      tmux.enableShellIntegration = true;
     };
     zoxide = {
       enable = true;
