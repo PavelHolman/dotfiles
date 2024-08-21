@@ -4,6 +4,7 @@
   programs.git = {
     enable = true;
     userName = "Pavel Holman";
+    delta.enable = true;
     ignores = [
       ".idea"
       ".user"
