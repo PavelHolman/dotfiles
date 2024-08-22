@@ -23,6 +23,9 @@ in
       };
       shellIntegration.enableZshIntegration = true;
       theme = "Catppuccin-Mocha";
+      extraConfig = ''
+        enable_audio_bell no
+      '';
     };
     direnv = {
       enable = true;
@@ -48,6 +51,12 @@ in
         }
       ];
       shellAliases = shellAliases;
+    };
+    nushell = {
+      enable = true;
+    };
+    carapace = {
+      enable = true;
     };
     starship = {
       enable = true;
