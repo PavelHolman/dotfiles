@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs = {
@@ -16,6 +16,10 @@
       enable = true;
     };
   };
+
+  home.packages = with pkgs; [
+    git-secret
+  ];
 
   home.file.".gitconfig".text = ''
     [includeIf "gitdir:~/Deels/"]
