@@ -87,6 +87,10 @@ in
     bat = {
       enable = true;
     };
+    yazi = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     btop = {
       enable = true;
       package = pkgs.btop.override { cudaSupport = true; };
