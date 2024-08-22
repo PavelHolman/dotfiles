@@ -31,5 +31,10 @@
 
   home.sessionVariables = {};
 
+  programs.nix-index =
+  {
+    enable = true;
+  };
+
   programs.home-manager.enable = true;
 }

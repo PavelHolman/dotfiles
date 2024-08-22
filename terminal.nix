@@ -22,16 +22,11 @@ in
         size = 10;
       };
       shellIntegration.enableZshIntegration = true;
-      shellIntegration.enableFishIntegration = true;
       theme = "Catppuccin-Mocha";
     };
     direnv = {
       enable = true;
       nix-direnv.enable = true;
-    };
-    fish = {
-      enable = true;
-      shellAliases = shellAliases;
     };
     zsh = {
       enable = true;
