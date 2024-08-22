@@ -7,6 +7,11 @@ let
     rev = "v1.8.0";
     sha256 = "139njh3z63vv22lq1df05w1rgknx95fj5njz31zgsm3hr7izp5bw";
   };
+  shellAliases = {
+    cat = "bat";
+    grep = "rg";
+    gll = "git log --graph --abbrev-commit --decorate --all --date=format:'%Y-%m-%d %H:%M:%S' --format=format:'%C(bold blue)%h%C(reset) on %C(bold cyan)%ad%C(reset) %C(bold green)(%ar)%C(reset) %C(dim white)by %an%C(reset) %C(auto)%d%C(reset) %n%C(white)%s%C(reset)%n'";
+  };
 in
 {
   programs = {
@@ -17,11 +22,16 @@ in
         size = 10;
       };
       shellIntegration.enableZshIntegration = true;
+      shellIntegration.enableFishIntegration = true;
       theme = "Catppuccin-Mocha";
     };
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+    };
+    fish = {
+      enable = true;
+      shellAliases = shellAliases;
     };
     zsh = {
       enable = true;
@@ -42,11 +52,7 @@ in
           src = you-should-use;
         }
       ];
-      shellAliases = {
-        cat = "bat";
-        grep = "rg";
-        gll = "git log --graph --abbrev-commit --decorate --all --date=format:'%Y-%m-%d %H:%M:%S' --format=format:'%C(bold blue)%h%C(reset) on %C(bold cyan)%ad%C(reset) %C(bold green)(%ar)%C(reset) %C(dim white)by %an%C(reset) %C(auto)%d%C(reset) %n%C(white)%s%C(reset)%n'";
-      };
+      shellAliases = shellAliases;
     };
     starship = {
       enable = true;
