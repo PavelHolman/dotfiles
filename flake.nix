@@ -4,13 +4,12 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    stylix.url = "github:danth/stylix/release-24.05";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
+    catppuccin.url = "github:catppuccin/nix";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, stylix, home-manager, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, catppuccin, home-manager, ... }:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -22,6 +21,7 @@
         inherit system;
         modules = [
           ./configuration.nix
+          catppuccin.nixosModules.catppuccin
         ];
         specialArgs = {
           inherit pkgs-unstable;
@@ -33,7 +33,7 @@
         inherit pkgs;
         modules = [
           ./home.nix
-          stylix.homeManagerModules.stylix
+          catppuccin.homeManagerModules.catppuccin
         ];
         extraSpecialArgs = {
           inherit pkgs-unstable;
