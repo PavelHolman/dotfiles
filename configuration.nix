@@ -11,6 +11,13 @@
     ./nvidia.nix
   ];
 
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+  };
+
+
   time.hardwareClockInLocalTime = true;
 
   # Bootloader.

@@ -4,8 +4,15 @@
   imports = [
     ./git.nix
     ./terminal.nix
-    ./stylix.nix
   ];
+
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+
+    pointerCursor.enable = true;
+  };
 
   home.username = "pajax";
   home.homeDirectory = "/home/pajax";
