@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   imports =
@@ -10,9 +10,6 @@
     ./hardware-configuration.nix # Include the results of the hardware scan.
     ./nvidia.nix
   ];
-
-  catppuccin.enable = true;
-  catppuccin.flavor = "mocha";
 
   time.hardwareClockInLocalTime = true;
 
@@ -67,9 +64,8 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -164,7 +160,7 @@
     dotnetCorePackages.dotnet_8.runtime
     docker
     nodejs_22
-    zed-editor
+    pkgs-unstable.zed-editor
     cudaPackages.cudnn
     discord
     vesktop

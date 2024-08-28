@@ -4,6 +4,7 @@
   imports = [
     ./git.nix
     ./terminal.nix
+    ./stylix.nix
   ];
 
   home.username = "pajax";
@@ -18,18 +19,11 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  catppuccin.enable = true;
-  catppuccin.flavor = "mocha";
-
   home.packages = with pkgs; [
     zip
     unzip
     xdg-utils
   ];
-
-  home.file = {};
-
-  home.sessionVariables = {};
 
   programs.home-manager.enable = true;
 }

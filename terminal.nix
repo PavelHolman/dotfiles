@@ -17,12 +17,7 @@ in
   programs = {
     kitty = {
       enable = true;
-      font = {
-        name = "JetBrainsMono Nerd Font";
-        size = 10;
-      };
       shellIntegration.enableZshIntegration = true;
-      theme = "Catppuccin-Mocha";
       extraConfig = ''
         enable_audio_bell no
       '';
