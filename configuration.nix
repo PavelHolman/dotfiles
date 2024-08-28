@@ -14,7 +14,7 @@
   catppuccin = {
     enable = true;
     flavor = "mocha";
-    accent = "mauve";
+    accent = "flamingo";
   };
 
 
@@ -137,9 +137,6 @@
     isNormalUser = true;
     description = "Pavel Holman";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    ];
   };
 
   # Allow unfree packages
@@ -156,12 +153,10 @@
     xdg-utils
     google-chrome
     git
-    wayland-utils
     networkmanager
     networkmanager-l2tp
     xl2tpd
-    catppuccin-kde
-    kde-rounded-corners
+    gnome.gnome-tweaks
     jetbrains-toolbox
     gcc
     rustup

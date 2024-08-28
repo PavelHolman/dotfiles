@@ -9,9 +9,19 @@
   catppuccin = {
     enable = true;
     flavor = "mocha";
-    accent = "mauve";
+    accent = "flamingo";
 
     pointerCursor.enable = true;
+  };
+
+  gtk = {
+    enable = true;
+
+    catppuccin = {
+      enable = true;
+      gnomeShellTheme = true;
+      icon.enable = true;
+    };
   };
 
   home.username = "pajax";
