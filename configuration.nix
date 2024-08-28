@@ -21,13 +21,16 @@
   time.hardwareClockInLocalTime = true;
 
   # Bootloader.
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    grub = {
-      enable = true;
-      devices = [ "nodev" ];
-      efiSupport = true;
-      useOSProber = true;
+  boot = {
+    plymouth.enable = true;
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        devices = [ "nodev" ];
+        efiSupport = true;
+        useOSProber = true;
+      };
     };
   };
 
