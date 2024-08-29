@@ -36,10 +36,17 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = (_: true);
+  };
+
   home.packages = with pkgs; [
     zip
     unzip
     xdg-utils
+
+    slack
   ];
 
   programs.home-manager.enable = true;
