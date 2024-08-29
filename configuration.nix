@@ -157,6 +157,7 @@
     networkmanager-l2tp
     xl2tpd
     gnome.gnome-tweaks
+    gnome.gnome-keyring
     jetbrains-toolbox
     gcc
     rustup
