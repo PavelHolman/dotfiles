@@ -15,12 +15,9 @@ let
 in
 {
   programs = {
-    kitty = {
+    alacritty = {
       enable = true;
-      shellIntegration.enableZshIntegration = true;
-      extraConfig = ''
-        enable_audio_bell no
-      '';
+      settings = pkgs.lib.importTOML ./alacritty.toml;
     };
     direnv = {
       enable = true;

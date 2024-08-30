@@ -23,6 +23,7 @@
   # Bootloader.
   boot = {
     plymouth.enable = true;
+    kernelParams = [ "quiet" ];
     loader = {
       efi.canTouchEfiVariables = true;
       grub = {
@@ -208,7 +209,7 @@
     enable = true;
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-kde
+      xdg-desktop-portal-gnome
     ];
   };
 
