@@ -161,8 +161,8 @@
     gnome.gnome-keyring
     gnomeExtensions.caffeine
     gnomeExtensions.dash-to-dock
-    gnomeExtensions.keyboard-reset
     gnomeExtensions.tray-icons-reloaded
+    pkgs-unstable.gnomeExtensions.keyboard-reset
     jetbrains-toolbox
     gcc
     rustup
