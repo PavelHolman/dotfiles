@@ -159,6 +159,10 @@
     xl2tpd
     gnome.gnome-tweaks
     gnome.gnome-keyring
+    gnomeExtensions.caffeine
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.keyboard-reset
+    gnomeExtensions.tray-icons-reloaded
     jetbrains-toolbox
     gcc
     rustup
