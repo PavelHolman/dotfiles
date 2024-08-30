@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
@@ -21,6 +21,21 @@
       enable = true;
       gnomeShellTheme = true;
       icon.enable = true;
+    };
+  };
+
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = [
+          pkgs.gnomeExtensions.caffeine.extensionUuid
+          pkgs.gnomeExtensions.dash-to-dock.extensionUuid
+          pkgs.gnomeExtensions.tray-icons-reloaded.extensionUuid
+          pkgs-unstable.gnomeExtensions.keyboard-reset.extensionUuid
+        ];
+      };
     };
   };
 
