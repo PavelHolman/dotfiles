@@ -157,12 +157,6 @@
     networkmanager
     networkmanager-l2tp
     xl2tpd
-    gnome.gnome-tweaks
-    gnome.gnome-keyring
-    gnomeExtensions.caffeine
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.tray-icons-reloaded
-    pkgs-unstable.gnomeExtensions.keyboard-reset
     jetbrains-toolbox
     gcc
     rustup
