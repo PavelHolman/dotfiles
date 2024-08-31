@@ -170,6 +170,7 @@
     discord
     vesktop
     omnisharp-roslyn
+    quickemu
   ];
 
   fonts = {
@@ -202,6 +203,8 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   xdg.portal = {
     enable = true;
