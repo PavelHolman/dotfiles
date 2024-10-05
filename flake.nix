@@ -22,9 +22,7 @@
     configuration = { pkgs, ... }: {
       nixpkgs.config.allowUnfree = true;
     
-      environment.systemPackages = with pkgs; [
-        alacritty
-      ];
+      environment.systemPackages = with pkgs; [];
 
       security.pam.enableSudoTouchIdAuth = true;
 
