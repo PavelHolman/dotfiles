@@ -14,8 +14,11 @@
     catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, catppuccin, ...  }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, catppuccin, ...  }:
   let
+    system = "aarch64-darwin";
+    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     configuration = { pkgs, ... }: {
       environment.systemPackages = with pkgs; [
         alacritty
@@ -37,7 +40,7 @@
       system.stateVersion = 5;
 
       # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.hostPlatform = system;
 
       users.users.pavelholman = {
         name = "pavelholman";
@@ -49,7 +52,7 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."PJBook" = nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
+      inherit system;
       modules = [
         configuration
         home-manager.darwinModules.home-manager
