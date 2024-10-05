@@ -2,7 +2,10 @@
 
 {
   imports = [
+    ./home/fonts.nix
     ./home/git.nix
+    ./home/terminal.nix
+    ./home/theme.nix
   ];
 
   home.packages = [
