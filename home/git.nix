@@ -4,6 +4,7 @@
   programs.git = {
     enable = true;
     userName = "Pavel Holman";
+    userEmail = "pavelholman@email.cz";
     delta.enable = true;
   };
 
