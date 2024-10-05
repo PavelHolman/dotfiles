@@ -70,6 +70,10 @@
               catppuccin.homeManagerModules.catppuccin
             ];
           };
+
+          home-manager.extraSpecialArgs = {
+            inherit pkgs-unstable;
+          };
         }
       ];
     };

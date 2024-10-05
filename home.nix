@@ -6,6 +6,7 @@
   
   
   imports = [
+    ./home/editors.nix
     ./home/fonts.nix
     ./home/git.nix
     ./home/macos.nix
