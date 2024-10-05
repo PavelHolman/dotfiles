@@ -1,9 +1,14 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = (_: true);
+  
+  
   imports = [
     ./home/fonts.nix
     ./home/git.nix
+    ./home/macos.nix
     ./home/terminal.nix
     ./home/theme.nix
   ];

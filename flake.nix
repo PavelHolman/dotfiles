@@ -20,6 +20,8 @@
     pkgs = nixpkgs.legacyPackages.${system};
     pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     configuration = { pkgs, ... }: {
+      nixpkgs.config.allowUnfree = true;
+    
       environment.systemPackages = with pkgs; [
         alacritty
       ];
