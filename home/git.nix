@@ -8,6 +8,7 @@
     delta.enable = true;
   };
 
+  programs.gpg.enable = true;
   programs.gitui.enable = true;
 
   home.packages = with pkgs; [
