@@ -29,6 +29,7 @@
       services.nix-daemon.enable = true;
 
       nix.settings.experimental-features = "nix-command flakes";
+      nix.settings.trusted-users = [ "root" "pavelholman" ];
 
       programs.zsh.enable = true;
 
