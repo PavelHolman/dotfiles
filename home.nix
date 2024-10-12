@@ -6,11 +6,10 @@
   
   
   imports = [
-    ./home/editors.nix
+    ./home/dev.nix
     ./home/fonts.nix
     ./home/git.nix
     ./home/macos.nix
-    ./home/rust.nix
     ./home/terminal.nix
     ./home/theme.nix
   ];
