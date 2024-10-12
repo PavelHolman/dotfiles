@@ -10,11 +10,13 @@
     ./home/fonts.nix
     ./home/git.nix
     ./home/macos.nix
+    ./home/rust.nix
     ./home/terminal.nix
     ./home/theme.nix
   ];
 
-  home.packages = [
+  home.packages = with pkgs; [
+    devenv
   ];
 
   home.file = {
