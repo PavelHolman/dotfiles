@@ -6,6 +6,10 @@
     userName = "Pavel Holman";
     userEmail = "pavelholman@email.cz";
     delta.enable = true;
+    lfs.enable = true;
+    ignores = [
+      ".DS_Store"
+    ];
   };
 
   programs.gpg.enable = true;
