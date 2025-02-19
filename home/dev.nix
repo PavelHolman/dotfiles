@@ -5,5 +5,7 @@
 
   home.packages = with pkgs; [
     rustup
+    poetry
+    devenv
   ];
 }
