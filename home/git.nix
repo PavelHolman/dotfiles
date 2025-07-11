@@ -32,7 +32,7 @@
 
   home.file.".gitconfig-deels".text = ''
     [user]
-      email = "pavelholman1@gmail.com"
+      email = "pavel.holman@deels.cz"
 
     [core]
       autocrlf = false
