@@ -20,6 +20,7 @@
 
   programs.gpg.enable = true;
   programs.gitui.enable = true;
+  programs.lazygit.enable = true;
 
   home.packages = with pkgs; [
     git-secret
