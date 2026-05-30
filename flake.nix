@@ -2,16 +2,17 @@
   description = "Very Epic MacOS Nix Darwin Config";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixpkgs-24.05-darwin";
+    nixpkgs.url = "nixpkgs/nixpkgs-26.05-darwin";
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
 
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     catppuccin.url = "github:catppuccin/nix";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, catppuccin, ...  }:
@@ -24,9 +25,7 @@
     
       environment.systemPackages = with pkgs; [];
 
-      security.pam.enableSudoTouchIdAuth = true;
-
-      services.nix-daemon.enable = true;
+      security.pam.services.sudo_local.touchIdAuth = true;
 
       nix.settings.experimental-features = "nix-command flakes";
       nix.settings.trusted-users = [ "root" "pavelholman" ];
@@ -52,7 +51,7 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."PJBook" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."PJ-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
         configuration
@@ -68,7 +67,7 @@
           home-manager.users.pavelholman = {
             imports = [
               ./home.nix
-              catppuccin.homeManagerModules.catppuccin
+              catppuccin.homeModules.catppuccin
             ];
           };
 
@@ -80,6 +79,6 @@
     };
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."PJBook".pkgs;
+    darwinPackages = self.darwinConfigurations."PJ-MacBook-Pro".pkgs;
   };
 }

@@ -3,13 +3,19 @@
 {
   programs.git = {
     enable = true;
-    userName = "Pavel Holman";
-    userEmail = "pavelholman@email.cz";
-    delta.enable = true;
+    settings.user = {
+      name = "Pavel Holman";
+      email = "pavelholman@email.cz";
+    };
     lfs.enable = true;
     ignores = [
       ".DS_Store"
     ];
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
   };
 
   programs.gpg.enable = true;

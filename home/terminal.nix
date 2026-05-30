@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 let
   you-should-use = pkgs.fetchFromGitHub {
@@ -15,13 +15,14 @@ let
 in
 {
   programs = {
-    alacritty = {
-      enable = true;
-      settings = pkgs.lib.importTOML ./configs/alacritty.toml;
-    };
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+    };
+    ghostty = {
+      enable = true;
+      package = pkgs-unstable.ghostty-bin;
+      enableZshIntegration = true;
     };
     zsh = {
       enable = true;
@@ -67,7 +68,7 @@ in
     };
     eza = {
       enable = true;
-      icons = true;
+      icons = "auto";
       git = true;
     };
     ripgrep = {
