@@ -3,9 +3,19 @@
 {
   programs.git = {
     enable = true;
-    settings.user = {
-      name = "Pavel Holman";
-      email = "pavelholman@email.cz";
+    settings = {
+      user = {
+        name = "Pavel Holman";
+        email = "pavelholman@email.cz";
+      };
+      includeIf."gitdir:~/Deels/".path = "~/.gitconfig-deels";
+      includeIf."gitdir:~/Merica/".path = "~/.gitconfig-merica";
+      includeIf."gitdir:~/FIT/".path = "~/.gitconfig-fit";
+      includeIf."gitdir:~/MFF/".path = "~/.gitconfig-mff";
+    };
+    signing = {
+      key = "EBE8FC92F0E6458375B8918A604C44A1DD4A0B69";
+      signByDefault = true;
     };
     lfs.enable = true;
     ignores = [
@@ -25,17 +35,6 @@
   home.packages = with pkgs; [
     git-secret
   ];
-
-  home.file.".gitconfig".text = ''
-    [includeIf "gitdir:~/Deels/"]
-      path = ~/.gitconfig-deels
-    [includeIf "gitdir:~/Merica/"]
-      path = ~/.gitconfig-merica
-    [includeIf "gitdir:~/FIT/"]
-      path = ~/.gitconfig-fit
-    [includeIf "gitdir:~/MFF/"]
-      path = ~/.gitconfig-mff
-  '';
 
   home.file.".gitconfig-deels".text = ''
     [user]
