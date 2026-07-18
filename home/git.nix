@@ -12,6 +12,7 @@
       includeIf."gitdir:~/Merica/".path = "~/.gitconfig-merica";
       includeIf."gitdir:~/FIT/".path = "~/.gitconfig-fit";
       includeIf."gitdir:~/MFF/".path = "~/.gitconfig-mff";
+      pull.rebase = true;
     };
     signing = {
       key = "EBE8FC92F0E6458375B8918A604C44A1DD4A0B69";
@@ -30,7 +31,14 @@
 
   programs.gpg.enable = true;
   programs.gitui.enable = true;
-  programs.lazygit.enable = true;
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      git = {
+        disableForcePushing = true;
+      };
+    };
+  };
 
   home.packages = with pkgs; [
     git-secret
