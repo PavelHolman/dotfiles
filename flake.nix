@@ -13,9 +13,11 @@
 
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, catppuccin, ...  }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, catppuccin, mac-app-util, ...  }:
   let
     system = "aarch64-darwin";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -30,7 +32,27 @@
       nix.settings.experimental-features = "nix-command flakes";
       nix.settings.trusted-users = [ "root" "pavelholman" ];
 
+      system.primaryUser = "pavelholman";
+
       programs.zsh.enable = true;
+
+      # Remap Caps Lock to Escape (pairs well with modal editors like Helix)
+      system.keyboard.enableKeyMapping = true;
+      system.keyboard.remapCapsLockToEscape = true;
+
+      system.defaults = {
+        finder = {
+          AppleShowAllExtensions = true;
+          FXPreferredViewStyle = "Nlsv";
+          ShowPathbar = true;
+          ShowStatusBar = true;
+        };
+        NSGlobalDomain = {
+          KeyRepeat = 2;
+          InitialKeyRepeat = 15;
+        };
+        screencapture.location = "~/Screenshots";
+      };
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -55,6 +77,7 @@
       inherit system;
       modules = [
         configuration
+        mac-app-util.darwinModules.default
         home-manager.darwinModules.home-manager
         {
           # Set Git commit hash for darwin-version.
@@ -63,6 +86,10 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "before-nix-home-manager";
+
+          home-manager.sharedModules = [
+            mac-app-util.homeManagerModules.default
+          ];
 
           home-manager.users.pavelholman = {
             imports = [
