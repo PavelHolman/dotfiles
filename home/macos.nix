@@ -5,5 +5,6 @@
     alt-tab-macos
     hidden-bar
     stats
+    sketchybar
   ];
 }

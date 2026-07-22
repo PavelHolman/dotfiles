@@ -10,10 +10,15 @@ let
   shellAliases = {
     cat = "bat";
     grep = "rg";
+    rm = "trash-put";
     gll = "git log --graph --abbrev-commit --decorate --all --date=format:'%Y-%m-%d %H:%M:%S' --format=format:'%C(bold blue)%h%C(reset) on %C(bold cyan)%ad%C(reset) %C(bold green)(%ar)%C(reset) %C(dim white)by %an%C(reset) %C(auto)%d%C(reset) %n%C(white)%s%C(reset)%n'";
   };
 in
 {
+  home.packages = with pkgs; [
+    trash-cli
+  ];
+
   programs = {
     direnv = {
       enable = true;
