@@ -8,6 +8,7 @@
     ./home/macos.nix
     ./home/terminal.nix
     ./home/theme.nix
+    ./home/theme-sync.nix
   ];
 
   home.packages = with pkgs; [
