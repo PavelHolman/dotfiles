@@ -51,37 +51,35 @@
           KeyRepeat = 2;
           InitialKeyRepeat = 15;
         };
-        screencapture.location = "~/Screenshots";
+        screencapture.location = "~/Captures";
       };
 
-      # Tiling window manager. `enableScriptingAddition` needs SIP partially
-      # disabled (Recovery Mode) - see the yabai wiki for the exact steps.
-      # Set both `enable`s below to true when ready to turn this on.
+      # Tiling window manager. Kept deliberately minimal: no scripting
+      # addition, so no SIP changes needed - just grant Accessibility
+      # access when macOS prompts on first launch. This gets you basic
+      # BSP tiling, focus, swap and fullscreen-zoom. Things that DO need
+      # the scripting addition (multi-space move/create, window shadows/
+      # transparency/animations) are left out; add `enableScriptingAddition
+      # = true` plus the SIP steps from the yabai wiki later if you want them.
       services.yabai = {
-        enable = false;
-        enableScriptingAddition = true;
+        enable = true;
         config = {
-          focus_follows_mouse = "autoraise";
-          mouse_follows_focus = "off";
-          window_placement = "second_child";
-          window_opacity = "off";
+          layout = "bsp";
+          window_gap = 10;
           top_padding = 10;
           bottom_padding = 10;
           left_padding = 10;
           right_padding = 10;
-          window_gap = 10;
-          layout = "bsp";
         };
         extraConfig = ''
           yabai -m rule --add app="^System Settings$" manage=off
           yabai -m rule --add app="^Finder$" manage=off
-          yabai -m rule --add app="^Raycast$" manage=off
           yabai -m rule --add app="^AltTab$" manage=off
         '';
       };
 
       services.skhd = {
-        enable = false;
+        enable = true;
         skhdConfig = ''
           # focus window
           alt - h : yabai -m window --focus west
@@ -97,26 +95,6 @@
 
           # toggle window fullscreen zoom
           alt - f : yabai -m window --toggle zoom-fullscreen
-
-          # toggle window float (centered, half-screen size)
-          shift + alt - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
-
-          # change space layout
-          ctrl + alt - b : yabai -m space --layout bsp
-          ctrl + alt - s : yabai -m space --layout stack
-          ctrl + alt - f : yabai -m space --layout float
-
-          # focus space
-          alt - 1 : yabai -m space --focus 1
-          alt - 2 : yabai -m space --focus 2
-          alt - 3 : yabai -m space --focus 3
-          alt - 4 : yabai -m space --focus 4
-
-          # send window to space
-          shift + alt - 1 : yabai -m window --space 1
-          shift + alt - 2 : yabai -m window --space 2
-          shift + alt - 3 : yabai -m window --space 3
-          shift + alt - 4 : yabai -m window --space 4
 
           # restart yabai
           ctrl + alt - r : launchctl kickstart -k "gui/''${UID}/org.nixos.yabai"
