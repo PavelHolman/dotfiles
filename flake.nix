@@ -13,11 +13,9 @@
 
     catppuccin.url = "github:catppuccin/nix";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
-
-    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, catppuccin, mac-app-util, ...  }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable, home-manager, catppuccin, ...  }:
   let
     system = "aarch64-darwin";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -54,53 +52,6 @@
         screencapture.location = "~/Captures";
       };
 
-      # Tiling window manager. Kept deliberately minimal: no scripting
-      # addition, so no SIP changes needed - just grant Accessibility
-      # access when macOS prompts on first launch. This gets you basic
-      # BSP tiling, focus, swap and fullscreen-zoom. Things that DO need
-      # the scripting addition (multi-space move/create, window shadows/
-      # transparency/animations) are left out; add `enableScriptingAddition
-      # = true` plus the SIP steps from the yabai wiki later if you want them.
-      services.yabai = {
-        enable = true;
-        config = {
-          layout = "bsp";
-          window_gap = 10;
-          top_padding = 10;
-          bottom_padding = 10;
-          left_padding = 10;
-          right_padding = 10;
-        };
-        extraConfig = ''
-          yabai -m rule --add app="^System Settings$" manage=off
-          yabai -m rule --add app="^Finder$" manage=off
-          yabai -m rule --add app="^AltTab$" manage=off
-        '';
-      };
-
-      services.skhd = {
-        enable = true;
-        skhdConfig = ''
-          # focus window
-          alt - h : yabai -m window --focus west
-          alt - j : yabai -m window --focus south
-          alt - k : yabai -m window --focus north
-          alt - l : yabai -m window --focus east
-
-          # swap window
-          shift + alt - h : yabai -m window --swap west
-          shift + alt - j : yabai -m window --swap south
-          shift + alt - k : yabai -m window --swap north
-          shift + alt - l : yabai -m window --swap east
-
-          # toggle window fullscreen zoom
-          alt - f : yabai -m window --toggle zoom-fullscreen
-
-          # restart yabai
-          ctrl + alt - r : launchctl kickstart -k "gui/''${UID}/org.nixos.yabai"
-        '';
-      };
-
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -124,7 +75,6 @@
       inherit system;
       modules = [
         configuration
-        mac-app-util.darwinModules.default
         home-manager.darwinModules.home-manager
         {
           # Set Git commit hash for darwin-version.
@@ -133,10 +83,6 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "before-nix-home-manager";
-
-          home-manager.sharedModules = [
-            mac-app-util.homeManagerModules.default
-          ];
 
           home-manager.users.pavelholman = {
             imports = [

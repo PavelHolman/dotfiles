@@ -1,5 +1,16 @@
-{ pkgs, ...}:
+{ pkgs, lib, ... }:
 
+let
+  # Commit email per folder. Anything outside these uses the default email below.
+  identities = {
+    "~/deels/" = "pavel.holman@deels.cz";
+    "~/poqet/" = "pavel.holman@poqet.cz";
+    "~/merica/" = "pavelholman@email.cz";
+    "~/dev/fel/" = "holmapav@cvut.cz";
+    "~/dev/fit/" = "holmapav@cvut.cz";
+    "~/dev/mff/" = "holmapav@cvut.cz";
+  };
+in
 {
   programs.git = {
     enable = true;
@@ -8,20 +19,18 @@
         name = "Pavel Holman";
         email = "pavelholman@email.cz";
       };
-      includeIf."gitdir:~/Deels/".path = "~/.gitconfig-deels";
-      includeIf."gitdir:~/Merica/".path = "~/.gitconfig-merica";
-      includeIf."gitdir:~/FIT/".path = "~/.gitconfig-fit";
-      includeIf."gitdir:~/MFF/".path = "~/.gitconfig-mff";
       pull.rebase = true;
     };
+    includes = lib.mapAttrsToList (dir: email: {
+      condition = "gitdir:${dir}";
+      contents.user.email = email;
+    }) identities;
     signing = {
       key = "EBE8FC92F0E6458375B8918A604C44A1DD4A0B69";
       signByDefault = true;
     };
     lfs.enable = true;
-    ignores = [
-      ".DS_Store"
-    ];
+    ignores = [ ".DS_Store" ];
   };
 
   programs.delta = {
@@ -33,40 +42,8 @@
   programs.gitui.enable = true;
   programs.lazygit = {
     enable = true;
-    settings = {
-      git = {
-        disableForcePushing = true;
-      };
-    };
+    settings.git.disableForcePushing = true;
   };
 
-  home.packages = with pkgs; [
-    git-secret
-  ];
-
-  home.file.".gitconfig-deels".text = ''
-    [user]
-      email = "pavel.holman@deels.cz"
-
-    [core]
-      autocrlf = false
-  '';
-
-  home.file.".gitconfig-merica".text = ''
-    [user]
-      email = "pavelholman@email.cz"
-
-    [core]
-      autocrlf = false
-  '';
-
-  home.file.".gitconfig-mff".text = ''
-    [user]
-      email = "holmapav@cvut.cz"
-  '';
-
-  home.file.".gitconfig-fit".text = ''
-    [user]
-      email = "holmapav@fit.cvut.cz"
-  '';
+  home.packages = [ pkgs.git-secret ];
 }
